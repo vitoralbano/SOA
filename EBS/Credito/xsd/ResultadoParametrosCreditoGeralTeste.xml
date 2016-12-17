@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:resultadoVerificaCreditoGeral xmlns:tns="http://pucminas.br/SN/Credito" xmlns:tns1="http://pucminas.br/MC/SOA/Biharck" xmlns:tns2="http://pucminas.br/MC/SOA/vitoralbano_rafaelriedel" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pucminas.br/SN/Credito ParametrosCredito.xsd ">
+  <score>
+    <tns2:score>0</tns2:score>
+  </score>
+</tns:resultadoVerificaCreditoGeral>

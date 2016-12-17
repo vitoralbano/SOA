@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://pucminas.br/SN/Credito" 
+	xmlns:tns="http://pucminas.br/SN/Credito" 
+	xmlns:varr="http://pucminas.br/MC/SOA/vitoralbano_rafaelriedel"
+	xmlns:cab="http://pucminas.br/MC/SOA/Biharck">
+
+	<import namespace="http://pucminas.br/MC/SOA/vitoralbano_rafaelriedel" schemaLocation="../../../ModeloCanonico/MC/Score.xsd" />
+	<import namespace="http://pucminas.br/MC/SOA/Biharck" schemaLocation="../../../ModeloCanonico/MC/Pessoa.xsd" />
+	<import namespace="http://pucminas.br/MC/SOA/Biharck" schemaLocation="../../../ModeloCanonico/MC/Credito.xsd" />
+	<import namespace="http://pucminas.br/MC/SOA/Biharck" schemaLocation="../../../ModeloCanonico/MC/MensagemRetorno.xsd" />
+
+	<element name="parametrosVerificaCreditoGeral">
+		<complexType>
+			<sequence>
+				<element name="pessoa" type="cab:Pessoa" />
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="resultadoVerificaCreditoGeral">
+		<complexType>
+			<sequence>
+				<element name="score" type="varr:Score" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="parametrosVerificaCreditoExterno">
+		<complexType>
+			<sequence>
+				<element name="pessoa" type="cab:Pessoa" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="resultadoVerificaCreditoExterno">
+		<complexType>
+			<sequence>
+				<element name="credito" type="cab:Credito" />
+			</sequence>
+		</complexType>
+	</element>
+
+
+	<complexType name="parametrosVerificaCreditoInterno">
+		<sequence>
+			<element name="pessoa" type="cab:Pessoa" />
+		</sequence>
+	</complexType>
+
+	<complexType name="resultadoVerificaCreditoInterno">
+		<sequence>
+			<element name="credito" type="cab:Credito" />
+		</sequence>
+	</complexType>
+
+	<element name="parametrosVerificaCreditoInterno" type="tns:parametrosVerificaCreditoInterno"></element>
+	<element name="resultadoVerificaCreditoInterno" type="tns:resultadoVerificaCreditoInterno"></element>
+
+	<element name="parametrosVerificaWhiteList">
+		<complexType>
+			<sequence>
+				<element name="pessoa" type="cab:Pessoa" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<element name="resultadoVerificaWhiteList">
+		<complexType>
+			<sequence>
+				<element name="mensagemRetorno" type="cab:MensagemRetorno" />
+			</sequence>
+		</complexType>
+	</element>
+
+</schema>

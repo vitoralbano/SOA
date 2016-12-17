@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config">
+  <ser:coreEntry isProxy="true" isEnabled="true">
+    <ser:binding type="SOAP" isSoap12="false" xsi:type="con4:SoapBindingType" xmlns:con4="http://www.bea.com/wli/sb/services/bindings/config">
+      <con4:wsdl ref="OSB_VARR/EBS/Credito/wsdl/CreditoService"/>
+      <con4:port>
+        <con4:name>CreditoServiceSOAP</con4:name>
+        <con4:namespace>http://pucminas.br/SN/CreditoService/Biharck</con4:namespace>
+      </con4:port>
+      <con4:selector type="SOAP body"/>
+      <con4:WSI-compliant>false</con4:WSI-compliant>
+    </ser:binding>
+    <ser:monitoring isEnabled="false">
+      <ser:aggregationInterval>10</ser:aggregationInterval>
+      <ser:pipelineMonitoringLevel>Pipeline</ser:pipelineMonitoringLevel>
+    </ser:monitoring>
+    <ser:reporting>true</ser:reporting>
+    <ser:logging isEnabled="true">
+      <ser:logLevel>debug</ser:logLevel>
+    </ser:logging>
+    <ser:sla-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:sla-alerting>
+    <ser:pipeline-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:pipeline-alerting>
+    <ser:ws-policy>
+      <ser:binding-mode>wsdl-policy-attachments</ser:binding-mode>
+    </ser:ws-policy>
+  </ser:coreEntry>
+  <ser:endpointConfig>
+    <tran:provider-id>http</tran:provider-id>
+    <tran:inbound>true</tran:inbound>
+    <tran:URI>
+      <env:value>/ServicosNegocio/Credito/verificaCreditoExternoService</env:value>
+    </tran:URI>
+    <tran:inbound-properties/>
+    <tran:all-headers>true</tran:all-headers>
+    <tran:provider-specific>
+      <http:inbound-properties/>
+    </tran:provider-specific>
+  </ser:endpointConfig>
+  <ser:router>
+    <con:pipeline type="request" name="PipelinePairOperacaoInexistente_request">
+      <con:stage name="stageOperacaoInexistente">
+        <con:context/>
+        <con:actions>
+          <con1:Error>
+            <con2:id>_ActionId-6271164686048216319--5b0809e8.158ffffbfc5.-7f43</con2:id>
+            <con1:errCode>001</con1:errCode>
+            <con1:message>Operacao Inexistente</con1:message>
+          </con1:Error>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="PipelinePairOperacaoInexistente_response"/>
+    <con:flow>
+      <con:branch-node type="operation" name="BranchNodeVerificaCreditoExterno">
+        <con:context/>
+        <con:branch-table>
+          <con:branch name="verificaCreditoExterno">
+            <con:operator>equals</con:operator>
+            <con:value/>
+            <con:flow>
+              <con:route-node name="RouteToSerasaService">
+                <con:context>
+                  <con2:varNsDecl namespace="http://serasa.com.br/SN/Serasa" prefix="ser"/>
+                  <con2:varNsDecl namespace="http://pucminas.br/SN/Credito" prefix="cred"/>
+                </con:context>
+                <con:actions>
+                  <con3:route>
+                    <con2:id>_ActionId-6271164686048216319--5b0809e8.158ffffbfc5.-7f32</con2:id>
+                    <con3:service ref="OSB_VARR/ServicosNegocio/Credito/Services/Proxies/SerasaServiceProxyService" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                    <con3:operation>ConsultarSerasa</con3:operation>
+                    <con3:outboundTransform>
+                      <con1:replace varName="body" contents-only="true">
+                        <con2:id>_ActionId-8644917602679463940--764403ea.15902efe3a4.-7fe6</con2:id>
+                        <con1:location>
+                          <con2:xpathText>.</con2:xpathText>
+                        </con1:location>
+                        <con1:expr>
+                          <con2:xqueryTransform>
+                            <con2:resource ref="OSB_VARR/ServicosNegocio/Credito/Resources/Transformations/VerificaCreditoExternoToSerasa"/>
+                            <con2:param name="parametrosVerificaCreditoExterno">
+                              <con2:path>$body/cred:parametrosVerificaCreditoExterno</con2:path>
+                            </con2:param>
+                          </con2:xqueryTransform>
+                        </con1:expr>
+                      </con1:replace>
+                    </con3:outboundTransform>
+                    <con3:responseTransform>
+                      <con1:replace varName="body" contents-only="true">
+                        <con2:id>_ActionId-405089048731714558-684bcdd6.159042e095e.-7f73</con2:id>
+                        <con1:location>
+                          <con2:xpathText>.</con2:xpathText>
+                        </con1:location>
+                        <con1:expr>
+                          <con2:xqueryTransform>
+                            <con2:resource ref="OSB_VARR/ServicosNegocio/Credito/Resources/Transformations/SerasaServiceResponseToCreditoExternoResponse"/>
+                            <con2:param name="resultadoSerasa">
+                              <con2:path>$body/ser:ResultadoSerasa</con2:path>
+                            </con2:param>
+                          </con2:xqueryTransform>
+                        </con1:expr>
+                      </con1:replace>
+                    </con3:responseTransform>
+                  </con3:route>
+                </con:actions>
+              </con:route-node>
+            </con:flow>
+          </con:branch>
+          <con:default-branch>
+            <con:flow>
+              <con:pipeline-node name="PipelinePairOperacaoInexistente">
+                <con:request>PipelinePairOperacaoInexistente_request</con:request>
+                <con:response>PipelinePairOperacaoInexistente_response</con:response>
+              </con:pipeline-node>
+            </con:flow>
+          </con:default-branch>
+        </con:branch-table>
+      </con:branch-node>
+    </con:flow>
+  </ser:router>
+</xml-fragment>

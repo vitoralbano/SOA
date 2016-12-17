@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="5970f12a-ca1d-4ff9-8fcb-c385030a306b" activeEnvironment="Default" name="PessoaService" resourceRoot="" soapui-version="5.2.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="eca0528b-0c24-4fd7-950a-f252963aa37c" wsaVersion="NONE" name="PessoaServiceSOAP" type="wsdl" bindingName="{http://pucminas.br/SN/PessoaService/Biharck}PessoaServiceSOAP" soapVersion="1_1" anonymous="optional" definition="file:/home/puc/workspacev4/OSB_VARR/EBS/Pessoa/wsdl/PessoaService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/home/puc/workspacev4/OSB_VARR/EBS/Pessoa/wsdl/PessoaService.wsdl"><con:part><con:url>file:/home/puc/workspacev4/OSB_VARR/EBS/Pessoa/wsdl/PessoaService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="PessoaService" targetNamespace="http://pucminas.br/SN/PessoaService/Biharck" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://pucminas.br/SN/PessoaService/Biharck" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:pes="http://pucminas.br/SN/Pessoa" xmlns:cab="http://pucminas.br/MC/SOA/Biharck" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://pucminas.br/SN/PessoaService/Biharck">
+      <xsd:import namespace="http://pucminas.br/SN/Pessoa" schemaLocation="../xsd/ParametrosPessoa.xsd"/>
+      <xsd:import namespace="http://pucminas.br/MC/SOA/Biharck" schemaLocation="../../../ModeloCanonico/MC/PucminasFault.xsd"/>
+      <xsd:element name="pucminasFault" type="cab:PucminasFault"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="pucminasFault">
+    <wsdl:part element="tns:pucminasFault" name="fault"/>
+  </wsdl:message>
+  <wsdl:message name="buscaPessoaRequest">
+    <wsdl:part element="pes:parametrosBuscaPessoa" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="buscaPessoaResponse">
+    <wsdl:part element="pes:resultadoBuscaPessoa" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="cadastraPessoaRequest">
+    <wsdl:part element="pes:parametrosCadastraPessoa" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="cadastraPessoaResponse">
+    <wsdl:part element="pes:resultadoCadastraPessoa" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="desastivaPessoaRequest">
+    <wsdl:part element="pes:parametrosDesastivaPessoa" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="PessoaService">
+    <wsdl:operation name="buscaPessoa">
+      <wsdl:input message="tns:buscaPessoaRequest"/>
+      <wsdl:output message="tns:buscaPessoaResponse"/>
+      <wsdl:fault name="pucminasFault" message="tns:pucminasFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="cadastraPessoa">
+      <wsdl:input message="tns:cadastraPessoaRequest"/>
+      <wsdl:output message="tns:cadastraPessoaResponse"/>
+      <wsdl:fault name="pucminasFault" message="tns:pucminasFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="desastivaPessoa">
+      <wsdl:input message="tns:desastivaPessoaRequest"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PessoaServiceSOAP" type="tns:PessoaService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="buscaPessoa">
+      <soap:operation soapAction="http://pucminas.br/SN/PessoaService/BuscaPessoa"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="pucminasFault">
+        <soap:fault name="pucminasFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="cadastraPessoa">
+      <soap:operation soapAction="http://pucminas.br/SN/PessoaService/CadastraPessoa"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="pucminasFault">
+        <soap:fault name="pucminasFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="desastivaPessoa">
+      <soap:operation soapAction="http://pucminas.br/SN/PessoaService/DesastivaPessoa"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PessoaService">
+    <wsdl:port binding="tns:PessoaServiceSOAP" name="PessoaServiceSOAP">
+      <soap:address location="http://pucminas.br/SOA/Pessoa"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/home/puc/workspacev4/OSB_VARR/EBS/Pessoa/xsd/ParametrosPessoa.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://pucminas.br/SN/Pessoa" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pucminas.br/SN/Pessoa" xmlns:cab="http://pucminas.br/MC/SOA/Biharck">
+  <import namespace="http://pucminas.br/MC/SOA/Biharck" schemaLocation="../../../ModeloCanonico/MC/Pessoa.xsd"/>
+  <element name="parametrosBuscaPessoa">
+    <complexType>
+      <sequence>
+        <element name="pessoa" type="cab:Pessoa"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="resultadoBuscaPessoa">
+    <complexType>
+      <sequence>
+        <element name="pessoa" type="cab:Pessoa"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="parametrosCadastraPessoa">
+    <complexType>
+      <sequence>
+        <element name="pessoa" type="cab:Pessoa"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="resultadoCadastraPessoa">
+    <complexType>
+      <sequence>
+        <element name="pessoa" type="cab:Pessoa"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="parametrosDesastivaPessoa ">
+    <complexType>
+      <sequence>
+        <element name="pessoa" type="cab:Pessoa"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/home/puc/workspacev4/OSB_VARR/ModeloCanonico/MC/Pessoa.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://pucminas.br/MC/SOA/Biharck" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pucminas.br/MC/SOA/Biharck">
+  <complexType name="Pessoa">
+    <sequence>
+      <element name="id" type="integer"/>
+      <element name="nome" type="string"/>
+      <element name="dataNascimento" type="date"/>
+      <element name="cnpj" type="string"/>
+      <element name="telefone" type="integer"/>
+    </sequence>
+  </complexType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/home/puc/workspacev4/OSB_VARR/ModeloCanonico/MC/PucminasFault.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://pucminas.br/MC/SOA/Biharck" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://pucminas.br/MC/SOA/Biharck">
+  <complexType name="PucminasFault">
+    <sequence>
+      <element name="codigo" type="integer"/>
+      <element name="descricao" type="string"/>
+      <element name="detalhe" type="string"/>
+    </sequence>
+  </complexType>
+  <element name="pucminasFault" type="tns:PucminasFault"/>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://puc-VirtualBox:8090/PessoaService</con:endpoint><con:endpoint>http://puc-VirtualBox:8090/PessoaServiceSOAP 02</con:endpoint><con:endpoint>http://pucminas.br/SOA/Pessoa</con:endpoint></con:endpoints><con:operation id="d69ede75-916f-491a-b27a-b619d4da52da" isOneWay="false" action="http://pucminas.br/SN/PessoaService/BuscaPessoa" name="buscaPessoa" bindingOperationName="buscaPessoa" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="57978a8f-1684-48bd-8638-56c8db92acb0" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/PessoaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pes="http://pucminas.br/SN/Pessoa" xmlns:bih="http://pucminas.br/MC/SOA/Biharck">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pes:parametrosBuscaPessoa>
+         <pes:pessoa>
+            <bih:id>?</bih:id>
+            <bih:nome>?</bih:nome>
+            <bih:dataNascimento>?</bih:dataNascimento>
+            <bih:cnpj>?</bih:cnpj>
+            <bih:telefone>?</bih:telefone>
+         </pes:pessoa>
+      </pes:parametrosBuscaPessoa>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pucminas.br/SN/PessoaService/BuscaPessoa"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="3df56b02-b32f-47a9-aa22-873eea11f167" isOneWay="false" action="http://pucminas.br/SN/PessoaService/CadastraPessoa" name="cadastraPessoa" bindingOperationName="cadastraPessoa" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="81696609-764b-4965-a97a-a98504b985aa" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/PessoaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pes="http://pucminas.br/SN/Pessoa" xmlns:bih="http://pucminas.br/MC/SOA/Biharck">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pes:parametrosCadastraPessoa>
+         <pes:pessoa>
+            <bih:id>?</bih:id>
+            <bih:nome>?</bih:nome>
+            <bih:dataNascimento>?</bih:dataNascimento>
+            <bih:cnpj>?</bih:cnpj>
+            <bih:telefone>?</bih:telefone>
+         </pes:pessoa>
+      </pes:parametrosCadastraPessoa>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pucminas.br/SN/PessoaService/CadastraPessoa"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="26d2df8d-cc91-491a-b282-52bee0a4dccd" isOneWay="false" action="http://pucminas.br/SN/PessoaService/DesastivaPessoa" name="desastivaPessoa" bindingOperationName="desastivaPessoa" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e850b064-17e5-4732-9c86-2b8e053d15e3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8090/PessoaService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pes="http://pucminas.br/SN/Pessoa" xmlns:bih="http://pucminas.br/MC/SOA/Biharck">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pes:parametrosDesastivaPessoa>
+         <pes:pessoa>
+            <bih:id>?</bih:id>
+            <bih:nome>?</bih:nome>
+            <bih:dataNascimento>?</bih:dataNascimento>
+            <bih:cnpj>?</bih:cnpj>
+            <bih:telefone>?</bih:telefone>
+         </pes:pessoa>
+      </pes:parametrosDesastivaPessoa>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pucminas.br/SN/PessoaService/DesastivaPessoa"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="c539b0ab-c29f-44ef-b0bf-f8f20f09e138" port="8090" path="/PessoaService" host="puc-VirtualBox" name="PessoaServiceSOAP MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="buscaPessoa" id="6f2c6f06-6168-4c72-9973-6dfcad7ca1ae" interface="PessoaServiceSOAP" operation="buscaPessoa"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="4db6315c-cda2-4c9f-a93c-5ad191ce3d5e" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pes="http://pucminas.br/SN/Pessoa" xmlns:bih="http://pucminas.br/MC/SOA/Biharck">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pes:resultadoBuscaPessoa>
+         <pes:pessoa>
+            <bih:id>2</bih:id>
+            <bih:nome>Francisco Alves</bih:nome>
+            <bih:dataNascimento>1984-03-01</bih:dataNascimento>
+            <bih:cnpj>987.765.546-90</bih:cnpj>
+            <bih:telefone>1234.4431</bih:telefone>
+         </pes:pessoa>
+      </pes:resultadoBuscaPessoa>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pucminas.br/SN/PessoaService/BuscaPessoa"/></con:response><con:response name="Response 2" id="399c1637-cde0-4618-bfef-1bef85b2b13c" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pes="http://pucminas.br/SN/Pessoa" xmlns:bih="http://pucminas.br/MC/SOA/Biharck">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pes:resultadoBuscaPessoa>
+         <pes:pessoa>
+            <bih:id>31</bih:id>
+            <bih:nome>Rafael Riedel</bih:nome>
+            <bih:dataNascimento>1983-07-08</bih:dataNascimento>
+            <bih:cnpj>045.331.224-98</bih:cnpj>
+            <bih:telefone>6666-8888</bih:telefone>
+         </pes:pessoa>
+      </pes:resultadoBuscaPessoa>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pucminas.br/SN/PessoaService/BuscaPessoa"/></con:response><con:response name="Response 3" id="91a0692a-a73c-401e-a533-a147a5dbc0a7" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pes="http://pucminas.br/SN/Pessoa" xmlns:bih="http://pucminas.br/MC/SOA/Biharck">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pes:resultadoBuscaPessoa>
+         <pes:pessoa>
+            <bih:id>9</bih:id>
+            <bih:nome>Biharck Araujo</bih:nome>
+            <bih:dataNascimento>1983-01-18</bih:dataNascimento>
+            <bih:cnpj>014.102.871-82</bih:cnpj>
+            <bih:telefone>7483-9154</bih:telefone>
+         </pes:pessoa>
+      </pes:resultadoBuscaPessoa>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pucminas.br/SN/PessoaService/BuscaPessoa"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="cadastraPessoa" id="be1637fc-a918-4b13-97eb-213ee7db6490" interface="PessoaServiceSOAP" operation="cadastraPessoa"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="3ff5557b-2ce7-4a62-9425-cae8f962c3c1" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pes="http://pucminas.br/SN/Pessoa" xmlns:bih="http://pucminas.br/MC/SOA/Biharck">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pes:resultadoCadastraPessoa>
+         <pes:pessoa>
+            <bih:id>3</bih:id>
+            <bih:nome>Albano Martins</bih:nome>
+            <bih:dataNascimento>1947/07/08</bih:dataNascimento>
+            <bih:cnpj>123.123.123-80</bih:cnpj>
+            <bih:telefone>1232 2141</bih:telefone>
+         </pes:pessoa>
+      </pes:resultadoCadastraPessoa>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pucminas.br/SN/PessoaService/CadastraPessoa"/></con:response><con:response name="Response 2" id="a286becf-5498-4131-8287-2720e6936663" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pes="http://pucminas.br/SN/Pessoa" xmlns:bih="http://pucminas.br/MC/SOA/Biharck">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pes:resultadoBuscaPessoa>
+         <pes:pessoa>
+            <bih:id>31</bih:id>
+            <bih:nome>Rafael Riedel</bih:nome>
+            <bih:dataNascimento>1983-07-08</bih:dataNascimento>
+            <bih:cnpj>045.331.224-98</bih:cnpj>
+            <bih:telefone>6666-8888</bih:telefone>
+         </pes:pessoa>
+      </pes:resultadoBuscaPessoa>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pucminas.br/SN/PessoaService/CadastraPessoa"/></con:response><con:response name="Response 3" id="f0494757-943f-45f8-97ff-dfebf1e9e8e0" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pes="http://pucminas.br/SN/Pessoa" xmlns:bih="http://pucminas.br/MC/SOA/Biharck">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pes:resultadoCadastraPessoa>
+         <pes:pessoa>
+            <bih:id>9</bih:id>
+            <bih:nome>Biharck Araujo</bih:nome>
+            <bih:dataNascimento>1983-01-18</bih:dataNascimento>
+            <bih:cnpj>014.453.568-88</bih:cnpj>
+            <bih:telefone>4315-8483</bih:telefone>
+         </pes:pessoa>
+      </pes:resultadoCadastraPessoa>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pucminas.br/SN/PessoaService/CadastraPessoa"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="desastivaPessoa" id="aecec3b5-d270-40d2-a433-91e2df9ba75e" interface="PessoaServiceSOAP" operation="desastivaPessoa"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="9f5fca63-cbb1-4645-b198-c2bcc8447c1a" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://pucminas.br/SN/PessoaService/DesastivaPessoa"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
